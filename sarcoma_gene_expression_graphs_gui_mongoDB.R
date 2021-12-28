@@ -12,10 +12,11 @@ library(survMisc)
 library(janitor)
 library(data.table)
 library(mongolite)
+library(rjson)
 
 
-
-connection_string <- "mongodb://sarcoma-manager:MongoDb-1dfae4e9912c99eea55ac@132.66.207.18:80/sarcomadb?authSource=admin"
+config  <- fromJSON(file = "config.json")
+connection_string <- config
 db_clinicalData <-  mongo(collection="ClinicalData", db="sarcomadb", url=connection_string)
 db_Gene_Expression <-  mongo(collection="RNASeq", db="sarcomadb", url=connection_string)
 #filtering clinical data 
